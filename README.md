@@ -6,3 +6,13 @@ Install using "npm install"
 To run the application npm start
 
 ## Usage
+![App Screenshot](/modul%2019%20screenshot%201.png)
+
+manifes.js:
+![App Screenshot]()
+
+service worker:
+![App Screenshot]()
+
+IndexDB Storage:
+![App Screenshot]()
