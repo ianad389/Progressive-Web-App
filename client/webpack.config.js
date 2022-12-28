@@ -2,7 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// TODO: Add and configure workbox plugins for a service worker and manifest file.
+// TODO: Add CSS loaders and babel to webpack.
+// looks like everthing here is done. but comeback if anything
 module.exports = () => {
   return {
     mode: 'development',
@@ -17,50 +20,46 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'J.A.T.E'
+        title: 'Webpack Plugin',
       }),
+      // new MiniCssExtractPlugin(),
       new InjectManifest({
-        swSrc: './src-sw.js',
+        swSrc: './src-sw.js', // come back to this if it doesn't plug in
         swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
-        fingerprints: false,
-        inject: true,
-        name: 'Just Another Text Editor',
-        short_name: 'J.A.T.E',
-        description: 'Takes notes with JavaScript syntax highlighting!',
-        background_color: '#225ca3',
-        theme_color: '#225ca3',
-        start_url: '/',
-        publicPath: '/',
+        name: 'GetYourTextEditingDone',
+        short_name: 'textEdit',
+        description: 'My awesome Progressive Web App!',
+        background_color: '#FFFFFF',
+        crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
         icons: [
           {
-            src: path.resolve('src/images/logo.png'),
+            src: path.resolve('./src/images/logo.png'), // come back to this if it doesn't compile
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join('assets', 'icons'),
+            destination: path.join('assets', 'icons')// multiple sizes
           },
-        ],
-      }),
+        ]
+      })
     ],
-
     module: {
       rules: [
         {
           test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          use: ["style-loader", "css-loader"],
         },
         {
           test: /\.m?js$/,
-          exclude: /node_modules/,
+          exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime']
             },
           },
         },
       ],
     },
   };
-};
+}
