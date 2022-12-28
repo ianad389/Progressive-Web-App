@@ -9,10 +9,14 @@ To run the application npm start
 ![App Screenshot](/modul%2019%20screenshot%201.png)
 
 manifes.js:
-![App Screenshot]()
+![App Screenshot](/Manifest.png)
 
 service worker:
-![App Screenshot]()
+![App Screenshot](/service-worker.png)
 
 IndexDB Storage:
-![App Screenshot]()
+![App Screenshot](/Module%2019%202.png)
+
+## License
+Read more about ISC here: [ISC] (https://opensource.org/licenses/ISC)
+
